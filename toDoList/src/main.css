@@ -1,0 +1,92 @@
+/* Estilos simples mobile-first */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: #f6f8fb;
+  color: #0f172a;
+  padding: 16px;
+}
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(20, 20, 40, 0.06);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+form {
+  display: flex;
+  gap: 8px;
+}
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e6e9ef;
+  border-radius: 8px;
+}
+button {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+}
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #eef2ff;
+  margin-bottom: 8px;
+}
+.todo-main {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.filter-btn {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #e6e9ef;
+  background: #fff;
+}
+.filter-btn.active {
+  background: #eef2ff;
+}
+.small {
+  font-size: 12px;
+  color: #64748b;
+}
+.completed {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+.remove {
+  background: #ef4444;
+}
+
+@media (min-width: 640px) {
+  .app {
+    padding: 28px;
+  }
+}
