@@ -67,11 +67,11 @@ ul {
 .filter-btn {
   padding: 8px 10px;
   border-radius: 8px;
-  border: 1px solid #e6e9ef;
-  background: #fff;
+  border: 1px solid #000000;
+  background: #000000;
 }
 .filter-btn.active {
-  background: #eef2ff;
+  background: #000000;
 }
 .small {
   font-size: 12px;
