@@ -1,30 +1,17 @@
-import React, { useMemo } from "react";
+import { useRecoilValue } from "recoil";
+import { filterTodosSelector } from "../selectors/filterTodosSelector";
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ todos, filter, onToggle, onRemove }) {
-  const filtered = useMemo(() => {
-    switch (filter) {
-      case "completed":
-        return todos.filter((t) => t.completed);
-      case "pending":
-        return todos.filter((t) => !t.completed);
-      default:
-        return todos;
-    }
-  }, [todos, filter]);
+export default function TodoList() {
+  const filteredTodos = useRecoilValue(filterTodosSelector);
 
-  if (filtered.length === 0)
+  if (filteredTodos.length === 0)
     return <p className="small">Nenhuma tarefa encontrada.</p>;
 
   return (
     <ul>
-      {filtered.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onToggle={onToggle}
-          onRemove={onRemove}
-        />
+      {filteredTodos.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} />
       ))}
     </ul>
   );

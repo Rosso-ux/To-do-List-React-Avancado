@@ -1,23 +1,28 @@
-import React from "react";
+import { useRecoilState } from "recoil";
+import { filterAtom } from "../atoms/filterAtom";
 
-export default function TodoFilters({ filter, setFilter, count }) {
-  const options = [
-    { id: "all", label: `Todas (${count})` },
-    { id: "pending", label: "Pendentes" },
-    { id: "completed", label: "Concluídas" },
-  ];
-
+export default function TodoFilters() {
+  const [filter, setFilter] = useRecoilState(filterAtom);
   return (
-    <div className="filters">
-      {options.map((o) => (
-        <button
-          key={o.id}
-          className={`filter-btn ${filter === o.id ? "active" : ""}`}
-          onClick={() => setFilter(o.id)}
-        >
-          {o.label}
-        </button>
-      ))}
+    <div>
+      <button
+        onClick={() => setFilter("all")}
+        className={filter === "all" ? "active" : ""}
+      >
+        Todas
+      </button>
+      <button
+        onClick={() => setFilter("completed")}
+        className={filter === "completed" ? "active" : ""}
+      >
+        Concluídas
+      </button>
+      <button
+        onClick={() => setFilter("pending")}
+        className={filter === "pending" ? "active" : ""}
+      >
+        Pendentes
+      </button>
     </div>
   );
 }

@@ -1,32 +1,27 @@
-import React from "react";
+import { useSetRecoilState } from "recoil";
+import { todoListAtom } from "../atoms/todoListAtom";
 
-function TodoItem({ todo, onToggle, onRemove }) {
+export default function TodoItem({ todo }) {
+  const setTodos = useSetRecoilState(todoListAtom);
+  function toggle() {
+    setTodos((prevTodos) =>
+      prevTodos.map((t) =>
+        t.id === todo.id ? { ...t, completed: !t.completed } : t
+      )
+    );
+  }
+  function remove() {
+    setTodos((prevTodos) => prevTodos.filter((t) => t.id !== todo.id));
+  }
   return (
-    <li className="todo-item" data-id={todo.id}>
-      <div className="todo-main">
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => onToggle(todo.id)}
-        />
-        <div>
-          <div className={todo.completed ? "completed" : ""}>{todo.text}</div>
-          <div className="small">
-            {new Date(todo.createdAt).toLocaleString()}
-          </div>
-        </div>
-      </div>
-      <div>
-        <button
-          className="remove"
-          onClick={() => onRemove(todo.id)}
-          aria-label={`remover-${todo.id}`}
-        >
-          Remover
-        </button>
-      </div>
+    <li>
+      <input type="checkbox" checked={todo.completed} onChange={toggle} />
+      <span
+        style={{ textDecoration: todo.completed ? "line-through" : "none" }}
+      >
+        {todo.text}
+      </span>
+      <button onClick={remove}>Remover</button>
     </li>
   );
 }
-
-export default React.memo(TodoItem);

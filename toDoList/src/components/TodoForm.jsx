@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { todoListAtom } from "../atoms/todoListAtom";
 
-export default function TodoForm({ onAdd }) {
+export default function TodoForm() {
   const [text, setText] = useState("");
+  const setTodos = useSetRecoilState(todoListAtom);
 
   function handleSubmit(e) {
     e.preventDefault();
     const trimmed = text.trim();
     if (!trimmed) return;
-    onAdd(trimmed);
+
+    setTodos((prevTodos) => [
+      ...prevTodos,
+      { id: Date.now(), text: trimmed, completed: false },
+    ]);
     setText("");
   }
 
